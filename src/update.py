@@ -2,7 +2,7 @@ import requests
 from debug import debug_print
 
 UPDATE_URL = 'https://raw.githubusercontent.com/rompelhd/AdminFreeExec/refs/heads/main/version'
-CURRENT_VERSION = '0.2.1'
+CURRENT_VERSION = '0.2.0'
 LATEST_VERSION = None
 
 def check_update_applicationfor_update():
@@ -24,3 +24,19 @@ def result_update():
     
 def update_application():
     debug_print(f"Actualizando", "INFO")
+
+    URLUPD = "https://github.com/rompelhd/AdminFreeExec/releases/tag/v" + LATEST_VERSION
+    response = requests.get(URLUPD)
+
+    if "AdminFreeExec.exe" in response.text:
+        download_url = "https://github.com/rompelhd/AdminFreeExec/releases/download/v" + LATEST_VERSION + "/AdminFreeExec.exe"
+        exe_response = requests.get(download_url)
+
+        if exe_response.status_code == 200:
+            with open("AdminFreeExec.exe", "wb") as f:
+                f.write(exe_response.content)
+            debug_print("AdminFreeExec.exe descargado y sobrescrito", "INFO")
+        else:
+            debug_print("Error al descargar AdminFreeExec.exe", "ERROR")
+    else:
+        debug_print("AdminFreeExec.exe no encontrado", "WARNING")
