@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import (
     QFileDialog, QCheckBox, QHBoxLayout, QSpacerItem, QSizePolicy
 )
 from PyQt5.QtGui import QFont
-from update import check_for_update, result_update, update_application, CURRENT_VERSION, LATEST_VERSION
+from update import check_update_applicationfor_update, result_update, update_application, CURRENT_VERSION, LATEST_VERSION
 from debug import debug_print
 
 CONFIG_FILE = 'config.json'
@@ -80,7 +80,7 @@ class DragDropWindow(QWidget):
 
         self.version_credit_layout = QHBoxLayout()
 
-        self.credit_label = QLabel("AdminFreeExec v0.1.0 by Rompelhd", self)
+        self.credit_label = QLabel("AdminFreeExec v" + CURRENT_VERSION + " by Rompelhd", self)
         self.credit_label.setFont(QFont("Arial", 10))
         self.credit_label.setAlignment(Qt.AlignRight)
 
@@ -121,7 +121,7 @@ class DragDropWindow(QWidget):
 
         self.version_credit_layout = QHBoxLayout()
 
-        self.credit_label = QLabel("AdminFreeExec v0.2.1 by Rompelhd", self)
+        self.credit_label = QLabel("AdminFreeExec v" + CURRENT_VERSION + " by Rompelhd", self)
         self.credit_label.setFont(QFont("Arial", 10))
         self.credit_label.setAlignment(Qt.AlignRight)
 
@@ -171,7 +171,7 @@ class DragDropWindow(QWidget):
 
         self.version_credit_layout = QHBoxLayout()
 
-        self.credit_label = QLabel(f"AdminFreeExec v{CURRENT_VERSION} by Rompelhd", self)
+        self.credit_label = QLabel("AdminFreeExec v" + CURRENT_VERSION + " by Rompelhd", self)
         self.credit_label.setFont(QFont("Arial", 10))
         self.credit_label.setAlignment(Qt.AlignRight)
 
@@ -235,7 +235,7 @@ class DragDropWindow(QWidget):
             self.setStyleSheet("background-color: white; color: black;")
 
 if __name__ == '__main__':
-    check_for_update()
+    check_update_applicationfor_update()
 
     app = QApplication(sys.argv)
     window = DragDropWindow()
